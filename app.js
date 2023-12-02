@@ -14,8 +14,10 @@ app.use(morgan("dev"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.get("/tasks", taskController.getAllTasks);
 app.post("/tasks", taskController.addTask);
+app.get("/tasks/:id", taskController.getTask);
 app.put("/tasks/:id", taskController.editTask);
 app.put("/tasks/complete/:id", taskController.completeTask);
 app.put("/tasks/uncomplete/:id", taskController.uncompleteTask);
@@ -24,5 +26,5 @@ app.delete("/tasks/delete/:id", taskController.deleteTask);
 app.use(errorController.error404)
 
 app.listen(port, () => {
-   console.log(`La API está funcionando en http://localhost/tasks:${port}`)  
+   console.log(`La API está funcionando en http://localhost:${port}/tasks`)  
 });
